@@ -3,7 +3,7 @@
 module.exports = robot => {
 
   BRAIN_KEY='notes'
-  robot.respond /add¥s+note¥s+(.+)¥s*$¥, (res) =>
+  robot.respond /add\s+note\s+(.+)\s*$/, (res) ->
     userID=res.envelope.user.id
     text=res.match[1]
     notes=robot.brain.get(BRAIN_KEY)||{}
