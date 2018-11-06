@@ -10,4 +10,13 @@ module.exports = (robot) ->
     robot.brain.set BRAIN_KEY, notes
     robot.brain.save()
     res.reply "保存しました　id: `#{myNotes.length -　1}`"
+    
+  robot.respond /list\s+notes?\s*$/, (res) ->
+    userID=res.envelope.user.id
+    notes=robot.brain.get(BRAIN_KEY) || {}
+    myNotes=notes[userID]
+    unless myNotes?.length > 0
+    res.reply 'まだ１つもメモが保存されていません'
+    return
+  res.reply '保存済みのメモ\n' + myNotes.map((note, i) -> "#{i}:#{note}").join('\n')
 
