@@ -17,11 +17,17 @@ module.exports = (robot) ->
     
   robot.respond /list\s+notes?(\s|　)(.+)$/, (res) ->
     #userID=res.envelope.user.id
-    console.log(res.match)
+    #console.log(res.match)
     category=res.match[2]
     notes=robot.brain.get(BRAIN_KEY) || {}
     myNotes=notes[category]
     res.reply '保存済みのメモ\n' + myNotes.map((note, i) -> "#{i}:#{note}").join('\n')
+    
+  robot.respond /list\s+category$/, (res) ->
+    #userID=res.envelope.user.id
+    #console.log(res.match)
+    notes=robot.brain.get(BRAIN_KEY) || {}
+    res.reply '保存済みのメモ\n' + notes.map((note, i) -> "#{i}:#{note}").join('\n')
     
   robot.respond /remove\s+notes?(\s|　)(.+)(\s|　)\d$/, (res) ->
     #userID=res.envelope.user.id
