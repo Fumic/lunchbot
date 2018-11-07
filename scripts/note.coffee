@@ -1,7 +1,7 @@
 module.exports = (robot) ->
   BRAIN_KEY='notes'
   
-  robot.respond /add\s+notes?\s+(\s|　)(.+)(\s|　)(.+)$/, (res) ->
+  robot.respond /add\s+notes?(\s|　)(.+)(\s|　)(.+)$/, (res) ->
     #userID=res.envelope.user.id
     #text=res.match[1]
     category=res.match[1]
@@ -21,7 +21,7 @@ module.exports = (robot) ->
     myNotes=notes[category]
     res.reply '保存済みのメモ\n' + myNotes.map((note, i) -> "#{i}:#{note}").join('\n')
     
-  robot.respond /remove\s+notes?\s+(\s|　)(.+)$/, (res) ->
+  robot.respond /remove\s+notes?(\s|　)(.+)$/, (res) ->
     #userID=res.envelope.user.id
     category=res.match[1]
     index=parseInt res.match[2]
