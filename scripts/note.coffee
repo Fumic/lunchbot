@@ -4,9 +4,9 @@ module.exports = (robot) ->
   robot.respond /add\s+notes?(\s|　)(.+)(\s|　)(.+)$/, (res) ->
     #userID=res.envelope.user.id
     #text=res.match[1]
-    console.log(res.match)
+    #console.log(res.match)
     category=res.match[2]
-    text=res.match[3]
+    text=res.match[4]
     notes=robot.brain.get(BRAIN_KEY)||{}
     myNotes=notes[category] || []
     myNotes.push text
@@ -17,15 +17,15 @@ module.exports = (robot) ->
     
   robot.respond /list\s+notes?(\s|　)*$/, (res) ->
     #userID=res.envelope.user.id
-    category=res.match[1]
+    category=res.match[2]
     notes=robot.brain.get(BRAIN_KEY) || {}
     myNotes=notes[category]
     res.reply '保存済みのメモ\n' + myNotes.map((note, i) -> "#{i}:#{note}").join('\n')
     
-  robot.respond /remove\s+notes?(\s|　)(.+)$/, (res) ->
+  robot.respond /remove\s+notes?(\s|　)(.+)(\s|　)\d$/, (res) ->
     #userID=res.envelope.user.id
-    category=res.match[1]
-    index=parseInt res.match[2]
+    category=res.match[2]
+    index=parseInt res.match[4]
     notes=robot.brain.get(BRAIN_KEY) || {}
     myNotes=notes[category] || []
     removed = myNotes.splice index, 1
