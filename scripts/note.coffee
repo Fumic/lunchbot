@@ -4,15 +4,16 @@ module.exports = (robot) ->
   robot.respond /add\s+notes?(\s|　)(.+)(\s|　)(.+)$/, (res) ->
     #userID=res.envelope.user.id
     #text=res.match[1]
-    category=res.match[1]
-    text=res.match[2]
+    console.log(res.match)
+    category=res.match[2]
+    text=res.match[3]
     notes=robot.brain.get(BRAIN_KEY)||{}
     myNotes=notes[category] || []
     myNotes.push text
     notes[category]=myNotes
     robot.brain.set BRAIN_KEY, notes
     robot.brain.save()
-    res.reply "保存しました　id: `#{category}:#{myNotes.length -　1}`"
+    res.reply "保存しました　`#{category}:#{myNotes.length -　1}`"
     
   robot.respond /list\s+notes?(\s|　)*$/, (res) ->
     #userID=res.envelope.user.id
