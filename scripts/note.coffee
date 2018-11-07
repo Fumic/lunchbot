@@ -13,7 +13,7 @@ module.exports = (robot) ->
     notes[category]=myNotes
     robot.brain.set BRAIN_KEY, notes
     robot.brain.save()
-    res.reply "保存しました　`#{category}:#{myNotes.length -　1}`"
+    res.reply "保存しました　`#{category}:#{myNotes}`"
     
   robot.respond /list\s+notes?(\s|　)*$/, (res) ->
     #userID=res.envelope.user.id
