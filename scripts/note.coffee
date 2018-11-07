@@ -1,7 +1,7 @@
 module.exports = (robot) ->
   BRAIN_KEY='notes'
   
-  robot.respond /add\s+notes?\s+(\s|　)(.+)(\s|　)(.+)$, (res) ->
+  robot.respond /add\s+notes?\s+(\s|　)(.+)(\s|　)(.+)$/, (res) ->
     #userID=res.envelope.user.id
     #text=res.match[1]
     category=res.match[1]
