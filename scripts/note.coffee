@@ -21,12 +21,12 @@ module.exports = (robot) ->
     category=res.match[2]
     notes=robot.brain.get(BRAIN_KEY) || {}
     myNotes=notes[category]
-    res.reply '保存済みのメモ\n' + myNotes.map((note, i) -> "#{i}:#{note}").join('\n')
+    res.reply "保存済みの`#{category}`\n" + myNotes.map((note, i) -> "#{i}:#{note}").join('\n')
     
   robot.respond /list\s+category$/, (res) ->
     #userID=res.envelope.user.id
-    #console.log(res.match)
     notes=robot.brain.get(BRAIN_KEY) || {}
+    console.log(notes)
     res.reply '保存済みのメモ\n' + notes.map((note, i) -> "#{i}:#{note}").join('\n')
     
   robot.respond /remove\s+notes?(\s|　)(.+)(\s|　)\d$/, (res) ->
