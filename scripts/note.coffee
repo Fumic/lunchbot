@@ -15,8 +15,9 @@ module.exports = (robot) ->
     robot.brain.save()
     res.reply "保存しました　`#{category}:#{myNotes}`"
     
-  robot.respond /list\s+notes?(\s|　)*$/, (res) ->
+  robot.respond /list\s+notes?(\s|　)(.+)$/, (res) ->
     #userID=res.envelope.user.id
+    console.log(res.match)
     category=res.match[2]
     notes=robot.brain.get(BRAIN_KEY) || {}
     myNotes=notes[category]
