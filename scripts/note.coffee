@@ -23,12 +23,6 @@ module.exports = (robot) ->
     myNotes=notes[category]
     res.reply "保存済みの`#{category}`\n" + myNotes.map((note, i) -> "#{i}:#{note}").join('\n')
     
-  robot.respond /list\s+category$/, (res) ->
-    #userID=res.envelope.user.id
-    notes=robot.brain.get(BRAIN_KEY) || {}
-    console.log(notes)
-    res.reply '保存済みのメモ\n' + notes.map((note, i) -> "#{i}:#{note}").join('\n')
-    
   robot.respond /remove\s+notes?(\s|　)(.+)(\s|　)\d$/, (res) ->
     #userID=res.envelope.user.id
     category=res.match[2]
